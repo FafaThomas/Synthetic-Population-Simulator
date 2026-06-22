@@ -1,0 +1,53 @@
+Generate a realistic baseline routine.
+
+IMPORTANT:
+
+Do NOT include occupation or work-related activities.
+
+Work is handled separately by the simulation engine.
+
+Return JSON only.
+
+OUTPUT FORMAT:
+
+{
+"routine": {
+"weekday_wake_time": "09:00",
+"weekday_sleep_time": "01:00",
+
+```
+"weekend_wake_time": "10:00",
+"weekend_sleep_time": "02:00",
+
+"activities": {
+  "hobbies": [
+    {
+      "name": "Photography",
+      "probability": 0.5,
+      "time_slot": ["Afternoon"]
+    }
+  ],
+
+  "leisure_activities": [],
+  "exercise_activities": [],
+  "social_activities": [],
+  "entertainment_activities": [],
+  "learning_activities": [],
+  "travel_activities": []
+}
+```
+
+}
+}
+
+PERSON:
+
+{persona_json}
+
+LIFESTYLE:
+
+{lifestyle_json}
+
+BEHAVIOR PROFILE:
+
+{behavior_json}

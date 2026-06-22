@@ -1,0 +1,39 @@
+Generate a behavior profile for this person.
+
+Return JSON only.
+
+PERSON:
+
+{persona_json}
+
+LIFESTYLE:
+
+{lifestyle_json}
+
+OUTPUT:
+
+{
+    {
+    "weekday_work_probability": 0.95,
+
+    "weekend_work_probability": 0.25
+    },
+    "exercise_probability": 0.60,
+    "social_probability": 0.40,
+    "travel_probability": 0.05,
+
+    "hobby_probabilities":
+    {
+        "Photography": 0.40,
+        "Reading": 0.70
+    },
+
+    "weekday_wake_time_mean": "08:00",
+    "weekday_sleep_time_mean": "01:00",
+
+    "weekend_wake_time_mean": "10:00",
+    "weekend_sleep_time_mean": "02:00",
+
+    "sick_day_probability": 0.01,
+    "vacation_probability": 0.02
+}

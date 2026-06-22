@@ -1,0 +1,26 @@
+Generate ONE realistic person based on the following archetype.
+
+Return JSON only.
+
+ARCHETYPE:
+
+{archetype_json}
+
+OUTPUT:
+
+{
+    "first_name": "",
+    "last_name": "",
+    "age": 0,
+    "occupation": "",
+    "city": "",
+    "country": "",
+
+    "profile":
+    {
+        "chronotype": "",
+        "fitness_level": "",
+        "gaming_hours_per_day": 0,
+        "exercise_probability": 0.0
+    }
+}

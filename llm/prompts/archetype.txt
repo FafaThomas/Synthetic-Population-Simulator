@@ -1,0 +1,13 @@
+Generate ONE realistic modern human archetype.
+
+Return JSON only.
+
+{
+    "name": "",
+    "description": "",
+    "age_range": [18, 35],
+    "common_occupations": [
+        ""
+    ],
+    "lifestyle_summary": ""
+}

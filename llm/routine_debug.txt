@@ -1,0 +1,78 @@
+```json
+{
+"routine": {
+"weekday_wake_time": "09:00",
+"weekday_sleep_time": "01:00",
+
+"weekend_wake_time": "10:00",
+"weekend_sleep_time": "02:00",
+
+"activities": {
+  "hobbies": [
+    {
+      "name": "Coding Challenges",
+      "probability": 0.4,
+      "time_slot": ["Morning"]
+    },
+    {
+      "name": "Digital Art",
+      "probability": 0.3,
+      "time_slot": ["Evening"]
+    }
+  ],
+
+  "leisure_activities": [
+    {
+      "name": "Relaxation and Meditation",
+      "probability": 0.15,
+      "time_slot": ["Late Evening"]
+    },
+    {
+      "name": "Watching TV or Movies",
+      "probability": 0.2,
+      "time_slot": ["Evening"]
+    }
+  ],
+  "exercise_activities": [
+    {
+      "name": "Home Workout Routine",
+      "probability": 0.5,
+      "time_slot": ["Afternoon"]
+    }
+  ],
+  "social_activities": [],
+  "entertainment_activities": [
+    {
+      "name": "Video Games or Online Gaming Sessions",
+      "probability": 0.3,
+      "time_slot": ["Evening"]
+    }
+  ],
+  "learning_activities": [
+    {
+      "name": "Online Courses in Programming Languages",
+      "probability": 0.25,
+      "time_slot": ["Morning"]
+    },
+    {
+      "name": "Language Learning Apps",
+      "probability": 0.1,
+      "time_slot": ["Afternoon", "Evening"]
+    }
+  ],
+  "travel_activities": [
+    {
+      "name": "Local Day Trips",
+      "probability": 0.05,
+      "time_slot": ["Weekend Afternoon"]
+    },
+    {
+      "name": "Conferences and Vacations",
+      "probability": 0.05,
+      "time_slot": ["Any Time"]
+    }
+  ]
+}
+}
+}
+```
