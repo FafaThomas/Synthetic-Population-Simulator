@@ -1,3 +1,4 @@
 secrets/*.txt
 !secrets/*.example.txt
 .venv
+.env
