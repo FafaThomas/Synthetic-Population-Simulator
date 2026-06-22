@@ -2,112 +2,93 @@
 
 ## Overview
 
-Synthetic Population Simulator is a synthetic human behavior and telemetry generation platform designed to create realistic populations, historical activity patterns, and real-time data streams for large-scale system testing.
+Synthetic Population Simulator is a behavioral simulation and telemetry generation platform designed to create realistic synthetic populations and produce large-scale human telemetry datasets.
 
-The project was created to solve a common problem in data engineering, analytics, observability, and AI development:
+The project was created to solve a common problem in data engineering, observability, analytics, machine learning, and distributed systems development:
 
-How do you test systems intended to serve thousands—or millions—of users when those users do not yet exist?
+How do you test systems designed to serve millions of users when those users do not yet exist?
 
-Rather than generating random records, Synthetic Population Simulator attempts to model people as persistent entities with identities, lifestyles, routines, preferences, behaviors, and long-term habits.
+Rather than generating random records, the simulator models synthetic people as persistent entities with identities, lifestyles, routines, preferences, devices, and long-term behavioral patterns.
 
-The goal is to create synthetic populations that behave consistently over time and produce realistic telemetry that can be used to validate data pipelines, dashboards, machine learning systems, monitoring platforms, and distributed architectures.
+The platform generates telemetry as a consequence of behavior.
+
+Instead of creating isolated events, it simulates what people do, what devices they own, and what data those devices would observe.
+
+This allows the generation of realistic multi-year telemetry datasets suitable for validating modern data platforms and analytics architectures.
 
 ---
 
 ## Vision
 
-The long-term objective is to simulate entire populations and generate realistic data at scale.
+The long-term goal is to simulate entire populations and produce realistic telemetry at scale.
 
-A generated individual is not merely a row in a database.
+A synthetic individual is not simply a database record.
 
-Each synthetic person possesses:
+Each person possesses:
 
-* An archetype
-* A persona
-* A lifestyle profile
-* A behavior profile
-* A routine model
+* Archetype
+* Persona
+* Lifestyle Profile
+* Behavior Profile
+* Routine Model
+* Device Ecosystem
 
-These characteristics influence future behavior and data generation.
+These characteristics influence future decisions, activities, and telemetry generation.
 
-Instead of generating isolated events, the simulator aims to answer:
+The simulator attempts to answer questions such as:
 
 * What would this person realistically be doing right now?
-* Where would they likely be?
+* What devices would they own?
+* What applications would they be using?
+* What telemetry would their devices observe?
 * How would their behavior evolve over months or years?
-* What telemetry would they generate as a consequence?
 
 ---
 
-## Intended Use Cases
+## Core Concept
 
-### Data Engineering
+Most synthetic datasets generate records.
 
-Generate realistic datasets to test:
+Synthetic Population Simulator generates behavior.
 
-* ETL pipelines
-* Data warehouses
-* Data lakes
-* Stream processing systems
-* Data quality validation
+Behavior produces activities.
 
-### Observability and Monitoring
+Activities produce telemetry.
 
-Stress test:
+Telemetry produces datasets.
 
-* Monitoring platforms
-* Alerting systems
-* Time-series databases
-* Metrics pipelines
-* Telemetry ingestion architectures
+```text
+Synthetic Person
+        ↓
+Behavior Engine
+        ↓
+Activity Generation
+        ↓
+Device Interaction
+        ↓
+Telemetry Generation
+        ↓
+Analytics Platform
+```
 
-### Analytics Platforms
+This distinction allows the simulator to generate realistic correlations across multiple telemetry sources.
 
-Validate:
+For example:
 
-* Dashboards
-* Reporting systems
-* KPI calculations
-* Business intelligence solutions
+* A gaming session may increase heart rate.
+* A coding session may generate IDE activity.
+* A sleep event may suppress device usage.
+* A stressful event may increase biometrics without physical movement.
 
-### AI and Machine Learning
-
-Create synthetic datasets for:
-
-* User behavior analysis
-* Recommendation systems
-* Time-series forecasting
-* Behavioral modeling
-* Simulation environments
-
-### Distributed Systems
-
-Generate realistic workloads for:
-
-* Kubernetes clusters
-* Event-driven architectures
-* Message brokers
-* Microservices platforms
+The resulting dataset resembles real-world telemetry produced by humans interacting with technology.
 
 ---
 
 ## Current Architecture
 
-### Population Generation Layer
+### PostgreSQL Metadata Layer
 
-An LLM-driven generation pipeline creates synthetic people through a sequence of specialized generation stages:
-
-1. Archetype Generation
-2. Persona Generation
-3. Lifestyle Generation
-4. Behavior Profile Generation
-5. Routine Generation
-
-Each stage produces structured outputs validated through Pydantic models before being persisted to PostgreSQL.
-
----
-
-### Persistence Layer
+PostgreSQL serves as the system of record.
 
 Currently stores:
 
@@ -116,104 +97,219 @@ Currently stores:
 * Lifestyle Profiles
 * Behavior Profiles
 * Routines
-
-PostgreSQL acts as the system of record for synthetic population data.
-
----
-
-### Reliability Guardrails
-
-The project currently includes:
-
-#### Retry-Based Generation Recovery
-
-All generators automatically retry failed generations.
-
-#### Schema Validation
-
-Pydantic validation enforces:
-
-* Type safety
-* Probability bounds
-* Structural correctness
-
-#### Failed User Isolation
-
-A single generation failure does not terminate population generation.
-
-#### Database Reliability
-
-Database connections are only opened when persistence is required, avoiding idle connection failures during long-running LLM operations.
+* Device Inventory
 
 ---
 
-## Current Status
+### Device Generation Layer
 
-### Implemented
+Each synthetic person receives a realistic device ecosystem.
 
-* LLM population generation pipeline
-* PostgreSQL persistence
-* Structured validation
-* Retry mechanisms
-* Failure isolation
-* Population seeding workflow
+Examples include:
 
-### In Progress
+* Smartphones
+* Smart Watches
+* Workstations
+* Laptops
+* IoT Devices
 
-* Historical schedule generation
-* Long-term behavior simulation
-* Daily activity generation
-* Behavioral evolution models
+Each device contains:
 
-### Planned
+* Device Type
+* Manufacturer
+* Model
+* MAC Address
+* Network Address
+* Communication Protocol
 
-* Multi-year historical schedule generation
-* Real-time telemetry generation
-* GPS simulation
-* Fitness telemetry
-* Productivity telemetry
-* Gaming telemetry
-* Event streaming architecture
-* Kubernetes-based simulation workers
-* Large-scale population simulation
-* Distributed execution
+Protocols are generated using deterministic rules.
+
+Examples:
+
+* Mobile Devices → WebSocket
+* Desktop Applications → HTTP + WebSocket
+* IoT Devices → MQTT
 
 ---
 
-## Future Architecture
+### Behavioral Simulation Layer
 
-Synthetic Population Simulator is intended to evolve into a full simulation platform.
+Behavior is generated from:
 
-```text
-Synthetic Person
-        ↓
-Behavior Engine
-        ↓
-Historical Schedule Generation
-        ↓
-Real-Time Activity Simulation
-        ↓
-Telemetry Generation
-        ↓
-Event Streaming
-        ↓
-Analytics / Monitoring Systems
-```
+* Routine Models
+* Probabilities
+* Lifestyle Characteristics
+* Personality Constraints
 
-The eventual objective is to support large-scale simulation scenarios capable of producing realistic telemetry streams for hundreds of thousands or millions of synthetic users.
+The simulator produces:
+
+* Sleep
+* Work
+* Gaming
+* Learning
+* Exercise
+* Social Activities
+* Travel
+* Entertainment
+
+Activities are generated consistently with the individual's profile.
+
+---
+
+### Telemetry Layer
+
+Activities generate telemetry events.
+
+Examples include:
+
+#### Biometrics
+
+* Heart Rate
+* Sleep State
+* Accelerometer Data
+* Step Counts
+
+#### Device Activity
+
+* Browser Usage
+* Application Launches
+* Application Exits
+* Device Power Events
+
+#### Productivity
+
+* IDE Usage
+* Project Activity
+* Coding Sessions
+
+#### Gaming
+
+* Match Events
+* Kill Events
+* Death Events
+* Session Activity
+
+Telemetry is stored in ClickHouse as an event stream.
+
+---
+
+### Data Platform Architecture
+
+Current architecture follows a modern lakehouse-inspired pattern.
+
+#### Bronze Layer
+
+Raw telemetry events.
+
+Stored in ClickHouse.
+
+Examples:
+
+* Heart Rate Readings
+* Sleep Events
+* Gaming Events
+* Application Usage
+* Device Activity
+
+#### Silver Layer (Planned)
+
+Aggregated behavioral datasets.
+
+Examples:
+
+* Daily Sleep Summaries
+* Daily Activity Summaries
+* Daily Productivity Metrics
+* Daily Health Metrics
+
+#### Gold Layer (Planned)
+
+Analytics-ready datasets.
+
+Examples:
+
+* Performance Scores
+* Health Scores
+* Burnout Risk Indicators
+* Engagement Metrics
+
+---
+
+## Current Scale
+
+The platform currently supports:
+
+* Hundreds of synthetic individuals
+* Multi-year behavioral simulation
+* Device-level telemetry generation
+* Historical event generation
+
+Recent simulation runs generated:
+
+* 197 synthetic individuals
+* 5 years of historical behavior
+* Tens of millions of telemetry events
+* ClickHouse-based storage and querying
+
+---
+
+## Intended Use Cases
+
+### Data Engineering
+
+* ETL Validation
+* Data Warehouse Testing
+* Data Lake Testing
+* Stream Processing Validation
+* Feature Store Development
+
+### Observability
+
+* Monitoring Platforms
+* Alerting Systems
+* Telemetry Pipelines
+* Time-Series Databases
+
+### Analytics
+
+* Dashboard Validation
+* KPI Development
+* Business Intelligence Testing
+
+### Machine Learning
+
+* Recommendation Systems
+* Behavioral Modeling
+* Forecasting
+* Feature Engineering
+
+### Distributed Systems
+
+* Event-Driven Architectures
+* Kafka Pipelines
+* Message Brokers
+* Kubernetes Workloads
 
 ---
 
 ## Why This Project Exists
 
-Many systems are tested using simplistic mock data.
+Most testing environments use unrealistic synthetic data.
 
-Real users are not random.
+Real people are not random.
 
-People have routines.
+They sleep.
 
-They have habits.
+They work.
 
-They sleep, work, travel, exercise, socialize, and change behavior over time.
+They learn.
 
-Synthetic Population Simulator aims to bridge the gap between random test data and realistic behavioral simulation, providing a foundation for testing systems that must operate under real-world conditions.
+They play games.
+
+They exercise.
+
+They interact with devices.
+
+Those behaviors create patterns that traditional mock datasets fail to capture.
+
+Synthetic Population Simulator aims to bridge the gap between random test data and realistic human telemetry, providing a platform capable of generating synthetic populations that behave consistently over time and produce meaningful datasets for modern data systems.

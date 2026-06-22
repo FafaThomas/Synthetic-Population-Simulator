@@ -1,0 +1,5 @@
+﻿Registered Device Table,,,,,
+Account_ID,Device_ID,Device_NAME,Protocol,Address,Mac Address
+12,33,Samsung Galaxy Smart Watch,MQTT,mqtt://myUser:mySecretPassword@broker.emqx.io:1883,00-1A-2B-3C-4D-5E
+12,27,Iphone 14 Pro Max,WebSocket,wss://api.yourdomain.com/v1/stream,3E-22-FB-C8-41-AA
+12,42,DESKTOP-KNGO,WebSocket,wss://api.yourdomain.com/v2/stream,3A-32-FF-C7-21-BA

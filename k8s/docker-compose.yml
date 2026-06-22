@@ -1,7 +1,9 @@
 services:
 
   postgres:
+
     image: postgres:17
+
     container_name: hts-postgres
 
     restart: unless-stopped
@@ -10,28 +12,59 @@ services:
       - "5432:5432"
 
     environment:
-      POSTGRES_DB_FILE: /run/secrets/postgres_db
+      POSTGRES_DB: hts
       POSTGRES_USER_FILE: /run/secrets/postgres_user
       POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
 
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ../database/init.sql:/docker-entrypoint-initdb.d/init.sql
-
     secrets:
-      - postgres_db
       - postgres_user
       - postgres_password
 
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  clickhouse:
+
+    image: clickhouse/clickhouse-server:latest
+
+    container_name: hts-clickhouse
+
+    restart: unless-stopped
+
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+
+    environment:
+      CLICKHOUSE_DB: hts
+      CLICKHOUSE_USER_FILE: /run/secrets/clickhouse_user
+      CLICKHOUSE_PASSWORD_FILE: /run/secrets/clickhouse_password
+
+    secrets:
+      - clickhouse_user
+      - clickhouse_password
+
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+      - ./clickhouse/init.sql:/docker-entrypoint-initdb.d/init.sql
+
 volumes:
+
   postgres_data:
 
+  clickhouse_data:
+
 secrets:
-  postgres_db:
-    file: ../secrets/postgres_db.txt
 
   postgres_user:
-    file: ../secrets/postgres_user.txt
+    file: ./secrets/postgres_user.txt
 
   postgres_password:
-    file: ../secrets/postgres_password.txt
+    file: ./secrets/postgres_password.txt
+
+  clickhouse_user:
+    file: ./secrets/clickhouse_user.txt
+
+  clickhouse_password:
+    file: ./secrets/clickhouse_password.txt

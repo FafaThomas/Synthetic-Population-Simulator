@@ -1,3 +1,4 @@
+from datetime import date
 from pydantic import (
     BaseModel,
     Field,
@@ -58,6 +59,7 @@ class LifestyleProfile(BaseModel):
 
 
 class Persona(BaseModel):
+    id: str
     first_name: str
     last_name: str
     age: int = Field(
@@ -134,3 +136,18 @@ class SyntheticPerson(BaseModel):
     lifestyle: LifestyleProfile
     behavior_profile: BehaviorProfile
     routine: Routine
+
+class DayContext(BaseModel):
+    simulation_date: date
+    is_weekend: bool
+    work_day: bool
+    exercise_day: bool
+    social_day: bool
+    travel_day: bool
+    wake_time: str
+    sleep_time: str
+
+class TimeBlock(BaseModel):
+    start_time: str
+    end_time: str
+

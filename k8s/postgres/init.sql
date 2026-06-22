@@ -131,6 +131,44 @@ CREATE TABLE routines
 -- INDEXES
 -- =====================================================
 
+
+CREATE TABLE registered_devices (
+
+    id UUID PRIMARY KEY
+        DEFAULT gen_random_uuid(),
+
+    persona_id UUID NOT NULL
+        REFERENCES personas(id)
+        ON DELETE CASCADE,
+
+    device_name TEXT NOT NULL,
+
+    device_type TEXT NOT NULL,
+
+    protocol TEXT NOT NULL,
+
+    connection_address TEXT,
+
+    mac_address TEXT,
+
+    manufacturer TEXT,
+
+    model TEXT,
+
+    operating_system TEXT,
+
+    first_seen TIMESTAMP,
+
+    last_seen TIMESTAMP,
+
+    created_at TIMESTAMP
+        DEFAULT NOW()
+);
+
+-- =====================================================
+-- INDEXES
+-- =====================================================
+
 CREATE INDEX idx_personas_archetype
     ON personas(archetype_id);
 
